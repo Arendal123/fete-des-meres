@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="description" content="Application Fête des Mères — Trouvez l'inspiration pour un repas parfait avec des idées d'entrées, plats et desserts.">
+  <title>🌸 Fête des Mères — Idées Repas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Floating hearts background -->
+  <div id="hearts-container" aria-hidden="true"></div>
+
+  <!-- ==================== HOME SCREEN ==================== -->
+  <div id="screen-home" class="screen active">
+    <div class="home-content">
+      <div class="home-hero">
+        <div class="hero-emoji">💐</div>
+        <h1>Bonne Fête<br><span class="highlight">Maman</span></h1>
+        <p class="subtitle">Compose le repas parfait pour elle&nbsp;✨</p>
+      </div>
+
+      <div class="category-cards">
+        <button class="card card-entree" data-category="entree" id="btn-entree">
+          <span class="card-icon">🥗</span>
+          <span class="card-label">Entrées</span>
+          <span class="card-count" id="count-entree">0 idée</span>
+        </button>
+
+        <button class="card card-plat" data-category="plat" id="btn-plat">
+          <span class="card-icon">🍽️</span>
+          <span class="card-label">Plats</span>
+          <span class="card-count" id="count-plat">0 idée</span>
+        </button>
+
+        <button class="card card-dessert" data-category="dessert" id="btn-dessert">
+          <span class="card-icon">🍰</span>
+          <span class="card-label">Desserts</span>
+          <span class="card-count" id="count-dessert">0 idée</span>
+        </button>
+      </div>
+
+      <button class="btn-menu-complet" id="btn-generate-menu">
+        <span class="btn-menu-icon">🎲</span>
+        <span>Menu complet aléatoire</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ==================== CATEGORY SCREEN ==================== -->
+  <div id="screen-category" class="screen">
+    <header class="cat-header">
+      <button class="btn-back" id="btn-back" aria-label="Retour">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <h2 id="cat-title">Entrées</h2>
+      <span id="cat-emoji" class="cat-header-emoji">🥗</span>
+    </header>
+
+    <div class="cat-body">
+      <!-- Add form -->
+      <div class="add-form">
+        <input type="text" id="input-dish" class="input-dish" placeholder="Nom du plat…" maxlength="60" autocomplete="off">
+        <button class="btn-add" id="btn-add" aria-label="Ajouter">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+      </div>
+
+      <!-- Random picker -->
+      <button class="btn-random" id="btn-random">
+        <span class="btn-random-dice">🎲</span>
+        <span>Choix aléatoire</span>
+      </button>
+
+      <!-- Dish list -->
+      <ul class="dish-list" id="dish-list"></ul>
+
+      <!-- Empty state -->
+      <div class="empty-state" id="empty-state">
+        <div class="empty-icon">📝</div>
+        <p>Aucune idée pour le moment.<br>Ajoute-en une ci-dessus&nbsp;!</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== RESULT MODAL ==================== -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal" id="modal">
+      <div class="modal-confetti" id="modal-confetti"></div>
+      <div class="modal-content">
+        <div class="modal-emoji" id="modal-emoji">🎉</div>
+        <p class="modal-label" id="modal-label">Le choix parfait&nbsp;:</p>
+        <h3 class="modal-result" id="modal-result">—</h3>
+        <button class="btn-modal-close" id="btn-modal-close">Merci&nbsp;💕</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== FULL MENU MODAL ==================== -->
+  <div class="modal-overlay" id="menu-modal-overlay">
+    <div class="modal modal-menu" id="menu-modal">
+      <div class="modal-confetti" id="menu-modal-confetti"></div>
+      <div class="modal-content">
+        <div class="modal-emoji">🌹</div>
+        <p class="modal-label">Menu pour Maman&nbsp;:</p>
+        <div class="menu-items">
+          <div class="menu-item">
+            <span class="menu-item-label">🥗 Entrée</span>
+            <span class="menu-item-value" id="menu-entree">—</span>
+          </div>
+          <div class="menu-item">
+            <span class="menu-item-label">🍽️ Plat</span>
+            <span class="menu-item-value" id="menu-plat">—</span>
+          </div>
+          <div class="menu-item">
+            <span class="menu-item-label">🍰 Dessert</span>
+            <span class="menu-item-value" id="menu-dessert">—</span>
+          </div>
+        </div>
+        <button class="btn-modal-close" id="btn-menu-close">Merci&nbsp;💕</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
